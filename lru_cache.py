@@ -19,17 +19,19 @@ class LRUCache:
     def put(self, key: int, value: int) -> None:
         # put() is inevitable - it has to go through
         # Calling get() helps us make this key the "most recent"
-        existing_value = self.get(key)
+        existing_value = self.cache.get(key, -1)
 
         if existing_value == -1:
             # Evict oldest item
-            oldest_key = next(iter(self.cache.keys()))
+            oldest_key = next(iter(self.cache))
             self.cache.pop(oldest_key)
-            self.cache[key] = value
         else:
-            # Override existing value
-            self.cache[key] = value
-        
+            # Evict existing key
+            self.cache.pop(key)
+
+        # Add new key-value pair
+        self.cache[key] = value
+
         print(self.cache)
 
 
