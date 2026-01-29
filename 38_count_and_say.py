@@ -9,7 +9,7 @@ class Solution:
             while j < len(m) and m[i] == m[j]:
                 j += 1
             
-            # j-1 gives us the count
+            # j-i gives us the count
             solution.append(f"{j-i}{m[i]}")
             i = j
         
