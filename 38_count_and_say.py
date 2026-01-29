@@ -17,10 +17,12 @@ class Solution:
 
  
     def countAndSay(self, n: int) -> str:
-        if n == 1:
-            return "1"
+        res = "1"
         
-        return self.RLE(self.countAndSay(n-1))
+        for _ in range(n-1):
+            res = self.RLE(res)
+
+        return res
     
 # Example usage:
 sol = Solution()
