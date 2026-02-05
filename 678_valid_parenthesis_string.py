@@ -2,7 +2,6 @@ class Solution:
     def checkValidString(self, s: str) -> bool:
         bracket_stack = []
         asterisk_stack = []
-        broken = False
 
         for i in range(len(s)):
             c = s[i]
@@ -17,20 +16,11 @@ class Solution:
                 elif asterisk_stack:
                     asterisk_stack.pop()
                 else:
-                    broken = True
-                    break
-
-        print(f"Broken: {broken}, Brackets: {bracket_stack}, Asterisk: {asterisk_stack}")   
-        if broken:
-            return False
+                    return False
 
         while bracket_stack and asterisk_stack:
             if asterisk_stack.pop() < bracket_stack.pop():
-                broken = True
-                break
-        
-        if broken:
-            return False
+                return False
 
         return len(bracket_stack) == 0
 
