@@ -1,21 +1,21 @@
 import numpy as np
 import math
-
 class Solution:
-    def eliminateMaximum(self, dist: list[int], speed: list[int]) -> int:
+    def eliminateMaximum(self, dist: List[int], speed: List[int]) -> int:
         n = len(dist)
-        dist = np.array(dist, dtype=float)
-        speed = np.array(speed, dtype=float)
-
-        time_to_city = dist / speed
+        time_to_city = []
+        for i in range(n):
+            time_to_city.append(math.ceil(dist[i] / speed[i]))
+        
         time_to_city.sort()
 
         for i in range(n):
             # Kill monster at position i - no need to update anything
-            if math.ceil(time_to_city[i]) <= i:
+            if time_to_city[i] <= i:
                 return i
         
         return n
+
 
 # Example usage:
 sol = Solution()
